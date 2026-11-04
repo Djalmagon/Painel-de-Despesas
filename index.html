@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Painel simples para registrar e acompanhar despesas por categoria."
+    />
+    <title>Painel de Despesas</title>
+  </head>
+  <body>
+    <div id="app" class="app-shell">
+      <aside class="sidebar" aria-label="Resumo financeiro">
+        <div class="sidebar-header">
+          <p class="eyebrow">Controle</p>
+          <h1>Despesas</h1>
+        </div>
+
+        <div class="resumo-geral card-panel">
+          <p class="label">Total geral</p>
+          <p id="total-geral" class="valor-total">R$ 0,00</p>
+        </div>
+
+        <div class="resumo-categorias card-panel">
+          <h2>Resumo por categoria</h2>
+          <ul class="lista-resumo">
+            <li>
+              <span>Alimentos</span>
+              <strong data-categoria="Alimentos">R$ 0,00</strong>
+            </li>
+            <li>
+              <span>Transporte</span>
+              <strong data-categoria="Transporte">R$ 0,00</strong>
+            </li>
+            <li>
+              <span>Lazer</span>
+              <strong data-categoria="Lazer">R$ 0,00</strong>
+            </li>
+            <li>
+              <span>Saúde</span>
+              <strong data-categoria="Saúde">R$ 0,00</strong>
+            </li>
+            <li>
+              <span>Outros</span>
+              <strong data-categoria="Outros">R$ 0,00</strong>
+            </li>
+          </ul>
+        </div>
+      </aside>
+
+      <main class="conteudo" aria-label="Área principal">
+        <section class="card-panel formulario-card" aria-labelledby="titulo-formulario">
+          <h2 id="titulo-formulario">Adicionar despesa</h2>
+
+          <form id="form-despesa" novalidate>
+            <div class="campo">
+              <label for="titulo">Título</label>
+              <input
+                id="titulo"
+                name="titulo"
+                type="text"
+                maxlength="120"
+                placeholder="Ex.: Mercado"
+                autocomplete="off"
+              />
+            </div>
+
+            <div class="campo">
+              <label for="valor">Valor</label>
+              <input
+                id="valor"
+                name="valor"
+                type="number"
+                step="0.01"
+                min="0.01"
+                placeholder="0,00"
+                inputmode="decimal"
+              />
+            </div>
+
+            <div class="campo">
+              <label for="categoria">Categoria</label>
+              <select id="categoria" name="categoria">
+                <option value="Alimentos">Alimentos</option>
+                <option value="Transporte">Transporte</option>
+                <option value="Lazer">Lazer</option>
+                <option value="Saúde">Saúde</option>
+                <option value="Outros">Outros</option>
+              </select>
+            </div>
+
+            <div class="acoes-formulario">
+              <button type="submit">Adicionar despesa</button>
+            </div>
+
+            <p id="mensagem-feedback" class="feedback info" role="status" aria-live="polite"></p>
+          </form>
+        </section>
+
+        <section class="card-panel lista-card" aria-labelledby="titulo-lista">
+          <div class="lista-header">
+            <h2 id="titulo-lista">Lançamentos</h2>
+          </div>
+
+          <ul id="lista-despesas" class="lista-despesas" aria-live="polite"></ul>
+
+          <div id="estado-vazio" class="estado-vazio" hidden>
+            <p>Nenhuma despesa cadastrada ainda.</p>
+            <span>Adicione seu primeiro lançamento para começar.</span>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
